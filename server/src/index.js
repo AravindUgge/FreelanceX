@@ -10,8 +10,13 @@ import { initDatabase } from './config/schema.js';
 import authRoutes from './routes/auth.js';
 import projectRoutes from './routes/projects.js';
 import userRoutes from './routes/users.js';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -50,6 +55,17 @@ app.use('/api/users', userRoutes);
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Serve static files from client build in production
+const clientBuildPath = join(__dirname, '../../client/dist');
+app.use(express.static(clientBuildPath));
+
+// Handle SPA routing - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(join(clientBuildPath, 'index.html'));
+  }
 });
 
 // Error handling middleware
