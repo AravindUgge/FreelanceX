@@ -28,10 +28,16 @@ initDatabase().catch(console.error);
 // Middleware
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(morgan('dev'));
-app.use(cors({
+
+const corsOptions = {
   origin: process.env.CLIENT_URL,
-  credentials: true
-}));
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight for all routes
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
