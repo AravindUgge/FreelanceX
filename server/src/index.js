@@ -12,6 +12,7 @@ import projectRoutes from './routes/projects.js';
 import userRoutes from './routes/users.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { existsSync } from 'fs';
 
 dotenv.config();
 
@@ -57,16 +58,25 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Serve static files from client build in production
+// Serve static files from client build only if it exists (fullstack deploy)
 const clientBuildPath = join(__dirname, '../../client/dist');
-app.use(express.static(clientBuildPath));
+if (existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath));
 
-// Handle SPA routing - serve index.html for all non-API routes
-app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(join(clientBuildPath, 'index.html'));
-  }
-});
+  // Handle SPA routing - serve index.html for all non-API routes
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(join(clientBuildPath, 'index.html'));
+    }
+  });
+} else {
+  // API-only mode — return 404 for non-API routes
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.status(404).json({ error: 'Frontend not deployed here. Use the API endpoints.' });
+    }
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
