@@ -82,9 +82,9 @@ const DashboardPage = () => {
           <div className="flex items-center gap-4 mb-2">
             <Avatar user={user} size={64} showStatus />
             <div>
-              <h1 className="text-3xl font-bold text-white">
-                Good {new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 18 ? 'afternoon' : 'evening'}, {user?.full_name?.split(' ')[0]}!
-              </h1>
+      <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-white">
+          Good {new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 18 ? 'afternoon' : 'evening'}, {user?.full_name?.split(' ')[0]}!
+        </h1>
               <p className="text-gray-400">
                 {isFreelancer ? "Here's your freelancing overview" : "Here's your project dashboard"}
               </p>
@@ -103,7 +103,7 @@ const DashboardPage = () => {
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-4`}>
                 <stat.icon className="w-6 h-6 text-white" />
               </div>
-              <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
               <div className="text-sm text-gray-400 mb-2">{stat.label}</div>
               <div className="text-xs text-green-400 font-medium">{stat.change} this month</div>
             </motion.div>

@@ -141,13 +141,13 @@ const HomePage = () => {
               <span className="text-sm text-gray-300">Trusted by 10,000+ freelancers worldwide</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-              Find Top{' '}
-              <span className="gradient-text">{displayText}</span>
-              <span className="typing-cursor">|</span>
-              <br />
-              Build Amazing Things
-            </h1>
+      <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+        Find Top <br className="sm:hidden" />
+        <span className="gradient-text">{displayText}</span>
+        <span className="typing-cursor">|</span>
+        <br className="hidden sm:block" />
+        Build Amazing Things
+      </h1>
 
             <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10">
               Connect with world-class talent. Get projects done on time, within budget, and beyond expectations.

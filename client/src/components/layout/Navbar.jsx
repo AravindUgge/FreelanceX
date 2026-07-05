@@ -126,26 +126,39 @@ const Navbar = () => {
           </div>
         </div>
 
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.nav initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="lg:hidden mt-4 pb-4 border-t border-white/10">
-              <div className="flex flex-col gap-1 pt-4">
-                {navLinks.map((link) => (
-                  <Link key={link.name} to={link.path} className={`px-4 py-3 rounded-lg text-sm font-medium transition-all ${isActive(link.path) ? 'bg-primary-400/20 text-primary-400' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{link.name}</Link>
-                ))}
-                {isAuthenticated && (
-                  <>
-                    <Link to="/dashboard" className="px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Dashboard</Link>
-                    <Link to="/messages" className="px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Messages</Link>
-                    <Link to="/profile" className="px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Profile</Link>
-                    <Link to="/settings" className="px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</Link>
-                    <Link to="/settings" className="px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Billing</Link>
-                  </>
-                )}
-              </div>
-            </motion.nav>
+<AnimatePresence>
+  {isMobileMenuOpen && (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 bg-dark-400/95 backdrop-blur-lg md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
+      <motion.div initial={{ y: '-100%' }} animate={{ y: 0 }} exit={{ y: '-100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} className="pt-24 pb-8 px-6 h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+        <div className="flex justify-end mb-4">
+          <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white"><X className="w-6 h-6 text-white" /></button>
+        </div>
+        <nav className="flex flex-col gap-1 flex-1">
+          {navLinks.map((link) => (
+            <Link key={link.name} to={link.path} onClick={() => setIsMobileMenuOpen(false)} className={`px-4 py-4 rounded-xl text-lg font-medium transition-all ${isActive(link.path) ? 'bg-primary-400/20 text-primary-400' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>{link.name}</Link>
+          ))}
+          {isAuthenticated && (
+            <div className="border-t border-white/10 mt-4 pt-4 flex flex-col gap-1">
+              <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Dashboard</Link>
+              <Link to="/messages" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Messages</Link>
+              <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Profile</Link>
+              <Link to="/settings" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</Link>
+              <button onClick={() => { setIsMobileMenuOpen(false); logout(); }} className="px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:bg-white/5 text-left">Sign Out</button>
+            </div>
           )}
-        </AnimatePresence>
+        </nav>
+        <div className="mt-auto">
+          {!isAuthenticated && (
+            <div className="flex flex-col gap-3">
+              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="btn-secondary w-full text-center">Sign In</Link>
+              <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full text-center">Get Started</Link>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       </div>
     </motion.header>
   );
