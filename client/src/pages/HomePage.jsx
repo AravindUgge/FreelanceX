@@ -200,6 +200,139 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Why FreelanceX — Animated Showcase */}
+      <section className="py-16 sm:py-24 relative z-10 overflow-hidden">
+        {/* Animated background particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <motion.div
+              key={`spark-${i}`}
+              className="absolute w-1 h-1 bg-primary-400/40 rounded-full"
+              style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              animate={{ y: [0, -200, 0], opacity: [0, 0.8, 0], scale: [0, 1.5, 0] }}
+              transition={{ duration: 6 + Math.random() * 4, delay: i * 0.4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 sm:mb-20">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs sm:text-sm text-primary-400 font-medium mb-4 sm:mb-6"
+            >
+              <Sparkles className="w-3.5 h-3.5" /> Why FreelanceX
+            </motion.span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
+              Not Just Another <span className="gradient-text">Freelance Platform</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
+              Built different. Designed for the future of work.
+            </p>
+          </motion.div>
+
+          {/* 3D Floating Feature Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-20">
+            {[
+              {
+                icon: Zap,
+                title: 'AI-Powered Matching',
+                desc: 'Our algorithm finds the perfect freelancer for your project in seconds, not days.',
+                gradient: 'from-yellow-400/20 to-orange-500/20',
+                borderColor: 'border-yellow-400/20',
+                iconBg: 'from-yellow-400 to-orange-500',
+                float: { y: [0, -12, 0] },
+                delay: 0,
+              },
+              {
+                icon: Shield,
+                title: 'Escrow Protection',
+                desc: 'Your money is safe. Funds are held in escrow until work is delivered and approved.',
+                gradient: 'from-green-400/20 to-emerald-500/20',
+                borderColor: 'border-green-400/20',
+                iconBg: 'from-green-400 to-emerald-500',
+                float: { y: [0, -16, 0] },
+                delay: 0.2,
+              },
+              {
+                icon: Star,
+                title: 'Verified Talent',
+                desc: 'Every freelancer is vetted. Only the top 3% make it through our screening process.',
+                gradient: 'from-primary-400/20 to-secondary-500/20',
+                borderColor: 'border-primary-400/20',
+                iconBg: 'from-primary-400 to-secondary-500',
+                float: { y: [0, -10, 0] },
+                delay: 0.4,
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 40, rotateX: 15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: feature.delay, duration: 0.6, ease: 'easeOut' }}
+                whileHover={{ y: -8, scale: 1.02, rotateY: 3 }}
+                className="perspective-1000"
+              >
+                <motion.div
+                  animate={feature.float}
+                  transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut' }}
+                  className={`relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${feature.gradient} backdrop-blur-xl border ${feature.borderColor} overflow-hidden group`}
+                >
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/5 to-transparent" />
+
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/5 to-transparent rounded-bl-full" />
+
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br ${feature.iconBg} flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{feature.title}</h3>
+                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed">{feature.desc}</p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Animated Counter Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+            {[
+              { value: 10000, suffix: '+', label: 'Active Freelancers', color: 'text-primary-400' },
+              { value: 5000, suffix: '+', label: 'Projects Completed', color: 'text-secondary-500' },
+              { value: 98, suffix: '%', label: 'Satisfaction Rate', color: 'text-green-400' },
+              { value: 50, suffix: '+', label: 'Countries Served', color: 'text-accent-500' },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.5 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="relative text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl glass-card overflow-hidden group"
+              >
+                {/* Animated gradient border on hover */}
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(135deg, rgba(108,99,255,0.1), rgba(255,101,132,0.1))' }} />
+
+                <motion.div
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 + 0.3, type: 'spring', stiffness: 200 }}
+                  className={`text-2xl sm:text-3xl md:text-4xl font-bold ${stat.color} mb-1 sm:mb-2`}
+                >
+                  {stat.value.toLocaleString()}{stat.suffix}
+                </motion.div>
+                <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Categories Section */}
       <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -229,6 +362,33 @@ const HomePage = () => {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* Skills Marquee — Infinite Scroll */}
+      <section className="py-8 sm:py-12 relative z-10 overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-dark-400 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-dark-400 to-transparent z-10 pointer-events-none" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="flex gap-3 sm:gap-4"
+        >
+          {[0, 1].map((set) => (
+            <motion.div
+              key={set}
+              animate={{ x: ['0%', '-100%'] }}
+              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+              className="flex gap-3 sm:gap-4 shrink-0"
+            >
+              {['React', 'Node.js', 'Python', 'TypeScript', 'Figma', 'PostgreSQL', 'AWS', 'Docker', 'Next.js', 'Vue.js', 'Tailwind', 'MongoDB', 'GraphQL', 'Redis', 'Kubernetes', 'Flutter'].map((skill) => (
+                <div key={`${set}-${skill}`} className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full glass text-xs sm:text-sm text-gray-300 font-medium whitespace-nowrap border border-white/5 hover:border-primary-400/30 hover:text-primary-400 transition-colors cursor-default">
+                  {skill}
+                </div>
+              ))}
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* Features Section */}
