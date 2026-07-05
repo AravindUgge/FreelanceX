@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Star, Users, Briefcase, Zap, Shield, Globe, Code, Palette, PenTool, TrendingUp, ChevronLeft, ChevronRight, Play, CheckCircle, Sparkles, Rocket, Heart } from 'lucide-react';
 import { Avatar } from '../components/ui/Avatar';
-import { TiltCard, FloatingCard, ParallaxLayer } from '../components/ui/TiltCard';
+import { TiltCard, FloatingCard } from '../components/ui/TiltCard';
 
 const typingTexts = ['Designers', 'Developers', 'Writers', 'Marketers'];
 
@@ -21,16 +21,8 @@ const Particle = ({ delay }) => (
   <motion.div
     className="absolute w-2 h-2 bg-primary-400/30 rounded-full"
     initial={{ x: Math.random() * 1200, y: Math.random() * 800, opacity: 0 }}
-    animate={{
-      y: [0, -300],
-      opacity: [0, 1, 0],
-    }}
-    transition={{
-      duration: 4 + Math.random() * 4,
-      delay: delay,
-      repeat: Infinity,
-      ease: 'easeOut',
-    }}
+    animate={{ y: [0, -300], opacity: [0, 1, 0] }}
+    transition={{ duration: 4 + Math.random() * 4, delay, repeat: Infinity, ease: 'easeOut' }}
   />
 );
 
@@ -136,70 +128,72 @@ const HomePage = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass mb-6 sm:mb-8">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-sm text-gray-300">Trusted by 10,000+ freelancers worldwide</span>
+              <span className="text-xs sm:text-sm text-gray-300">Trusted by 10,000+ freelancers worldwide</span>
             </motion.div>
 
-      <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-        Find Top <br className="sm:hidden" />
-        <span className="gradient-text">{displayText}</span>
-        <span className="typing-cursor">|</span>
-        <br className="hidden sm:block" />
-        Build Amazing Things
-      </h1>
+            {/* Hero heading — mobile: 3 lines, desktop: 2 lines */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+              <span className="block">Find Top</span>
+              <span className="gradient-text">{displayText}</span>
+              <span className="typing-cursor">|</span>
+              <span className="block">Build Amazing Things</span>
+            </h1>
 
-            <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 max-w-2xl lg:max-w-3xl mx-auto mb-8 sm:mb-10 px-2">
               Connect with world-class talent. Get projects done on time, within budget, and beyond expectations.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link to="/register" className="btn-primary text-lg px-10 py-4 inline-flex items-center justify-center gap-2">
-                Get Started Free <ArrowRight className="w-5 h-5" />
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 sm:px-0">
+              <Link to="/register" className="btn-primary text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto">
+                Get Started Free <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link to="/projects" className="btn-secondary text-lg px-10 py-4 inline-flex items-center justify-center gap-2">
-                <Play className="w-5 h-5" /> Browse Projects
+              <Link to="/projects" className="btn-secondary text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto">
+                <Play className="w-4 h-4 sm:w-5 sm:h-5" /> Browse Projects
               </Link>
             </div>
 
-            <div className="flex items-center justify-center gap-8 text-sm text-gray-400">
-              <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-400" /> No credit card required</div>
-              <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-400" /> Free forever</div>
-              <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-400" /> Cancel anytime</div>
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm text-gray-400 px-4">
+              <div className="flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" /> No credit card required</div>
+              <div className="flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" /> Free forever</div>
+              <div className="flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" /> Cancel anytime</div>
             </div>
           </motion.div>
 
           {/* Floating avatars */}
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }} className="mt-16 flex justify-center gap-6 md:gap-8">
+          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }} className="mt-10 sm:mt-16 flex justify-center gap-4 sm:gap-6 md:gap-8">
             {featuredFreelancers.map((freelancer, index) => (
               <motion.div key={freelancer.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + index * 0.15 }} whileHover={{ y: -10, scale: 1.1 }} className="relative">
-                <Avatar user={freelancer} size={80} showStatus />
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 glass-card px-3 py-1 rounded-full whitespace-nowrap">
-                  <div className="flex items-center gap-1"><Star className="w-3 h-3 text-yellow-400 fill-yellow-400" /><span className="text-xs text-white">{freelancer.rating}</span></div>
+                <Avatar user={freelancer} size={60} smSize={70} lgSize={80} showStatus />
+                <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 glass-card px-2 sm:px-3 py-0.5 sm:py-1 rounded-full whitespace-nowrap">
+                  <div className="flex items-center gap-0.5 sm:gap-1"><Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-yellow-400 fill-yellow-400" /><span className="text-[10px] sm:text-xs text-white">{freelancer.rating}</span></div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-            <motion.div animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-1.5 h-1.5 rounded-full bg-white/50" />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2">
+          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-5 sm:w-6 h-8 sm:h-10 rounded-full border-2 border-white/20 flex justify-center pt-1.5 sm:pt-2">
+            <motion.div animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-white/50" />
           </motion.div>
         </motion.div>
       </motion.section>
 
       {/* Stats Section */}
-      <section className="py-20 relative z-10">
+      <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <motion.div variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {stats.map((stat) => (
-              <motion.div key={stat.label} variants={itemVariants} whileHover={{ scale: 1.05, y: -5 }} className="glass-card rounded-2xl p-6 text-center">
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
-                  <stat.icon className="w-8 h-8 text-white" />
+              <motion.div key={stat.label} variants={itemVariants} whileHover={{ scale: 1.05, y: -5 }} className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 mx-auto mb-2 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
+                  <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.value}</div>
+                <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -207,54 +201,54 @@ const HomePage = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-20 relative z-10">
+      <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <span className="text-primary-400 text-sm font-semibold tracking-wider uppercase mb-4 block">Explore Categories</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Find Talent by Category</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">Browse through our wide range of professional categories</p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-16">
+            <span className="text-primary-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-3 sm:mb-4 block">Explore Categories</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">Find Talent by Category</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">Browse through our wide range of professional categories</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {categories.map((cat, index) => (
               <TiltCard key={cat.name} intensity={8} className="h-full">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="glass-card rounded-2xl p-6 cursor-pointer group h-full">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <cat.icon className="w-7 h-7 text-white" />
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 cursor-pointer group h-full">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform`}>
+                    <cat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-1">{cat.name}</h3>
-                  <p className="text-sm text-gray-400">{cat.count} freelancers</p>
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white mb-0.5 sm:mb-1">{cat.name}</h3>
+                  <p className="text-xs sm:text-sm text-gray-400">{cat.count} freelancers</p>
                 </motion.div>
               </TiltCard>
             ))}
           </div>
 
-          <div className="text-center mt-8">
-            <Link to="/projects" className="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 font-medium">
-              View All Categories <ArrowRight className="w-4 h-4" />
+          <div className="text-center mt-6 sm:mt-8">
+            <Link to="/projects" className="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 font-medium text-sm sm:text-base">
+              View All Categories <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 relative z-10">
+      <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <span className="text-primary-400 text-sm font-semibold tracking-wider uppercase mb-4 block">Why Choose Us</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Built for Success</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">Everything you need to succeed in the freelancing world</p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-16">
+            <span className="text-primary-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-3 sm:mb-4 block">Why Choose Us</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">Built for Success</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">Everything you need to succeed in the freelancing world</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {features.map((feature, index) => (
               <TiltCard key={feature.title} intensity={10} className="h-full">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="glass-card rounded-2xl p-6 text-center group h-full">
-                  <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                    <feature.icon className="w-8 h-8 text-white" />
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center group h-full">
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                    <feature.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-3">{feature.title}</h3>
-                  <p className="text-gray-400 text-sm">{feature.description}</p>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">{feature.title}</h3>
+                  <p className="text-gray-400 text-xs sm:text-sm">{feature.description}</p>
                 </motion.div>
               </TiltCard>
             ))}
@@ -263,23 +257,23 @@ const HomePage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 relative z-10">
+      <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <span className="text-primary-400 text-sm font-semibold tracking-wider uppercase mb-4 block">Simple Process</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">Get started in four easy steps</p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-16">
+            <span className="text-primary-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-3 sm:mb-4 block">Simple Process</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">How It Works</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">Get started in four easy steps</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {howItWorks.map((step, index) => (
               <motion.div key={step.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.15 }} className="text-center relative">
                 {index < 3 && <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary-400/50 to-transparent" />}
-                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary-400 to-secondary-500 flex items-center justify-center text-2xl font-bold text-white relative z-10">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary-400 to-secondary-500 flex items-center justify-center text-lg sm:text-xl md:text-2xl font-bold text-white relative z-10">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
-                <p className="text-gray-400 text-sm">{step.description}</p>
+                <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2 sm:mb-3">{step.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -287,61 +281,61 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 relative z-10">
+      <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <span className="text-primary-400 text-sm font-semibold tracking-wider uppercase mb-4 block">Testimonials</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Loved by Thousands</h2>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-16">
+            <span className="text-primary-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-3 sm:mb-4 block">Testimonials</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">Loved by Thousands</h2>
           </motion.div>
 
           <div className="relative">
             <FloatingCard intensity={5}>
-              <motion.div key={testimonialIndex} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} className="glass-card rounded-3xl p-8 md:p-12 text-center">
-                <div className="flex justify-center mb-6">
+              <motion.div key={testimonialIndex} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} className="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-center">
+                <div className="flex justify-center mb-4 sm:mb-6">
                   {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                    <Star key={s} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-yellow-400 fill-yellow-400" />
                   ))}
                 </div>
-                <p className="text-xl md:text-2xl text-gray-200 mb-8 italic leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
-                <div className="flex items-center justify-center gap-4">
-                  <Avatar user={{ role: testimonials[testimonialIndex].avatar }} size={56} />
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 sm:mb-8 italic leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
+                <div className="flex items-center justify-center gap-3 sm:gap-4">
+                  <Avatar user={{ role: testimonials[testimonialIndex].avatar }} size={40} smSize={48} lgSize={56} />
                   <div className="text-left">
-                    <div className="text-white font-semibold">{testimonials[testimonialIndex].name}</div>
-                    <div className="text-gray-400 text-sm">{testimonials[testimonialIndex].role}</div>
+                    <div className="text-white font-semibold text-sm sm:text-base">{testimonials[testimonialIndex].name}</div>
+                    <div className="text-gray-400 text-xs sm:text-sm">{testimonials[testimonialIndex].role}</div>
                   </div>
                 </div>
               </motion.div>
             </FloatingCard>
 
-            <div className="flex justify-center gap-4 mt-8">
-              <button onClick={prevTestimonial} className="p-3 rounded-full glass hover:bg-white/10 transition-colors"><ChevronLeft className="w-5 h-5 text-white" /></button>
-              <div className="flex items-center gap-2">
+            <div className="flex justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+              <button onClick={prevTestimonial} className="p-2 sm:p-3 rounded-full glass hover:bg-white/10 transition-colors"><ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" /></button>
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 {testimonials.map((_, i) => (
-                  <button key={i} onClick={() => setTestimonialIndex(i)} className={`w-2 h-2 rounded-full transition-all ${i === testimonialIndex ? 'w-8 bg-primary-400' : 'bg-gray-600'}`} />
+                  <button key={i} onClick={() => setTestimonialIndex(i)} className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all ${i === testimonialIndex ? 'w-6 sm:w-8 bg-primary-400' : 'bg-gray-600'}`} />
                 ))}
               </div>
-              <button onClick={nextTestimonial} className="p-3 rounded-full glass hover:bg-white/10 transition-colors"><ChevronRight className="w-5 h-5 text-white" /></button>
+              <button onClick={nextTestimonial} className="p-2 sm:p-3 rounded-full glass hover:bg-white/10 transition-colors"><ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" /></button>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative z-10">
+      <section className="py-12 sm:py-20 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <TiltCard intensity={6}>
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative glass-card rounded-3xl p-12 md:p-16 text-center overflow-hidden">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative glass-card rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 text-center overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-secondary-500/20 pointer-events-none" />
               <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #6C63FF 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
               <div className="relative z-10">
-                <motion.div animate={{ rotate: [0, 5, -5, 0] }} transition={{ duration: 2, repeat: Infinity }} className="text-6xl mb-6">🚀</motion.div>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Ready to Get Started?</h2>
-                <p className="text-gray-400 mb-10 max-w-xl mx-auto text-lg">Join thousands of freelancers and clients already using FreelanceX to build amazing things together.</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/register" className="btn-primary text-lg px-10 py-4 inline-flex items-center justify-center gap-2">Start Free Today <ArrowRight className="w-5 h-5" /></Link>
-                  <Link to="/projects" className="btn-secondary text-lg px-10 py-4 inline-flex items-center justify-center gap-2">Explore Projects</Link>
+                <motion.div animate={{ rotate: [0, 5, -5, 0] }} transition={{ duration: 2, repeat: Infinity }} className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">🚀</motion.div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">Ready to Get Started?</h2>
+                <p className="text-gray-400 mb-6 sm:mb-8 md:mb-10 max-w-xl mx-auto text-sm sm:text-base md:text-lg">Join thousands of freelancers and clients already using FreelanceX to build amazing things together.</p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                  <Link to="/register" className="btn-primary text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto">Start Free Today <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" /></Link>
+                  <Link to="/projects" className="btn-secondary text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto">Explore Projects</Link>
                 </div>
-                <p className="text-sm text-gray-500 mt-8">No credit card required • Free forever for basic features</p>
+                <p className="text-xs sm:text-sm text-gray-500 mt-6 sm:mt-8">No credit card required • Free forever for basic features</p>
               </div>
             </motion.div>
           </TiltCard>

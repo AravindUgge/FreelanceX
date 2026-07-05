@@ -63,7 +63,7 @@ body {
 .glow-accent { box-shadow: 0 0 30px rgba(0, 210, 255, 0.4); }
 
 .btn-primary {
-  @apply relative overflow-hidden bg-gradient-to-r from-primary-400 to-primary-500 text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-400/30 active:scale-95;
+  @apply relative overflow-hidden bg-gradient-to-r from-primary-400 to-primary-500 text-white font-semibold px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-400/30 active:scale-95;
   transform-style: preserve-3d;
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 .btn-secondary {
-  @apply relative overflow-hidden bg-dark-200 text-white font-semibold px-8 py-3 rounded-xl border border-white/10 transition-all duration-300 hover:bg-dark-100 hover:border-white/20 active:scale-95;
+  @apply relative overflow-hidden bg-dark-200 text-white font-semibold px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 rounded-xl border border-white/10 transition-all duration-300 hover:bg-dark-100 hover:border-white/20 active:scale-95;
   transform-style: preserve-3d;
 }
 
@@ -83,7 +83,7 @@ body {
 }
 
 .btn-google {
-  @apply relative overflow-hidden bg-white text-gray-800 font-semibold px-8 py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-3;
+  @apply relative overflow-hidden bg-white text-gray-800 font-semibold px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-3;
 }
 
 .btn-google:hover {
