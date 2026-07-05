@@ -86,7 +86,7 @@ const Navbar = () => {
 
           {/* Desktop Right — only visible md+ */}
           <div className="hidden md:flex items-center gap-1.5 lg:gap-2.5">
-            {isAuthenticated && (
+            {isAuthenticated ? (
               <>
                 <Link to="/messages" className="p-1.5 lg:p-2 rounded-lg hover:bg-white/10 transition-colors relative">
                   <MessageSquare className="w-4 h-4 lg:w-5 lg:h-5 text-gray-400 hover:text-white" />
@@ -144,6 +144,11 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
               </>
+            ) : (
+              <>
+                <Link to="/login" className="text-xs lg:text-sm text-gray-400 hover:text-white transition-colors px-3 py-1.5">Sign In</Link>
+                <Link to="/register" className="btn-primary text-xs lg:text-sm py-1.5 px-3 lg:px-4">Get Started</Link>
+              </>
             )}
           </div>
 
@@ -160,7 +165,10 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              <Link to="/register" className="btn-primary text-xs py-1.5 px-3">Get Started</Link>
+              <>
+                <Link to="/login" className="text-xs text-gray-400 hover:text-white transition-colors px-2 py-1">Sign In</Link>
+                <Link to="/register" className="btn-primary text-[10px] sm:text-xs py-1 sm:py-1.5 px-2.5 sm:px-3">Get Started</Link>
+              </>
             )}
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-1.5 rounded-lg hover:bg-white/10 transition-colors">
               {isMobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
