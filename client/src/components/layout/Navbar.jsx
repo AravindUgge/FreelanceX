@@ -147,13 +147,25 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile hamburger — only visible below md */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
-          </button>
+          {/* Mobile right side — only visible below md */}
+          <div className="flex md:hidden items-center gap-2">
+            {isAuthenticated ? (
+              <>
+                <Link to="/messages" className="p-1.5 rounded-lg hover:bg-white/10 transition-colors relative">
+                  <MessageSquare className="w-4 h-4 text-gray-400" />
+                  <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-secondary-500 rounded-full" />
+                </Link>
+                <button onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} className="p-0.5 rounded-lg hover:bg-white/10 transition-colors">
+                  <Avatar user={user} size={28} showStatus />
+                </button>
+              </>
+            ) : (
+              <Link to="/register" className="btn-primary text-xs py-1.5 px-3">Get Started</Link>
+            )}
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-1.5 rounded-lg hover:bg-white/10 transition-colors">
+              {isMobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+            </button>
+          </div>
         </div>
       </div>
 
