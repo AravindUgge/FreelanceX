@@ -87,12 +87,12 @@ const FallbackAvatar = ({ name, size, colors }) => {
   );
 };
 
-export const Avatar = ({ user, size = 80, containerSize, showStatus = false, className = '' }) => {
+export const Avatar = ({ user, size = 80, smSize, lgSize, showStatus = false, className = '' }) => {
   const name = user?.full_name || user?.name || 'User';
   const role = user?.role || 'freelancer';
   const isOnline = user?.is_online;
   const [imgError, setImgError] = useState(false);
-  const resolvedSize = containerSize || size;
+  const resolvedSize = lgSize || smSize || size;
 
   const colors = useMemo(() => {
     const h = hashString(name);
@@ -101,16 +101,17 @@ export const Avatar = ({ user, size = 80, containerSize, showStatus = false, cla
 
   const avatarUrl = useMemo(() => getAvatarUrl(name, resolvedSize * 3), [name, resolvedSize]);
   const gender = useMemo(() => detectGender(name), [name]);
+  const effectiveSize = lgSize || size;
 
   return (
     <motion.div
       className={`relative inline-flex items-center justify-center rounded-full overflow-hidden flex-shrink-0 ${className}`}
-      style={{ width: resolvedSize, height: resolvedSize }}
+      style={{ width: effectiveSize, height: effectiveSize }}
       whileHover={{ scale: 1.05 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       {imgError ? (
-        <FallbackAvatar name={name} size={resolvedSize} colors={colors} />
+        <FallbackAvatar name={name} size={effectiveSize} colors={colors} />
       ) : (
         <img
           src={avatarUrl}
