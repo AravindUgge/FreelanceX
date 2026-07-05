@@ -77,7 +77,7 @@ const CreateProjectPage = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Category</label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {categories.map((cat) => (
                     <button key={cat} onClick={() => setForm({ ...form, category: cat })} className={`p-3 rounded-xl text-sm text-left transition-all ${form.category === cat ? 'bg-primary-400/20 text-primary-400 border border-primary-400/50' : 'bg-dark-200/50 text-gray-400 border border-transparent hover:border-white/10'}`}>
                       {cat}
@@ -90,7 +90,7 @@ const CreateProjectPage = () => {
 
           {step === 2 && (
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Min Budget ($)</label>
                   <input type="number" value={form.budgetMin} onChange={(e) => setForm({ ...form, budgetMin: e.target.value })} placeholder="1000" className="input-field" />
@@ -135,8 +135,8 @@ const CreateProjectPage = () => {
           )}
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-between mt-6">
+{/* Navigation */}
+<div className="flex flex-col sm:flex-row sm:justify-between gap-3 mt-6">
           {step > 1 ? (
             <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => setStep(step - 1)} className="btn-secondary flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />Back

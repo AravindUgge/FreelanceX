@@ -58,9 +58,9 @@ const Navbar = () => {
             <span className="text-xl font-bold gradient-text hidden sm:block">FreelanceX</span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link key={link.name} to={link.path} className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive(link.path) ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
+<nav className="hidden md:flex items-center gap-1">
+  {navLinks.map((link) => (
+    <Link key={link.name} to={link.path} className={`relative px-3 py-2 md:px-4 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 ${isActive(link.path) ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
                 {link.name}
                 {isActive(link.path) && <motion.div layoutId="activeTab" className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-primary-400 to-secondary-500" />}
               </Link>
@@ -120,7 +120,7 @@ const Navbar = () => {
               </div>
             )}
 
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors">
               {isMobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
             </button>
           </div>

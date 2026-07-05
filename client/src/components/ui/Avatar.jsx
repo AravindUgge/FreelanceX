@@ -25,46 +25,41 @@ const avatarColors = [
 ];
 
 const maleNames = [
-  'james', 'john', 'robert', 'michael', 'william', 'david', 'richard', 'joseph', 'thomas', 'christopher',
-  'charles', 'daniel', 'matthew', 'anthony', 'mark', 'donald', 'steven', 'paul', 'andrew', 'joshua',
-  'kenneth', 'kevin', 'brian', 'george', 'timothy', 'ronald', 'edward', 'jason', 'jeffrey', 'ryan',
-  'jacob', 'gary', 'nicholas', 'eric', 'jonathan', 'stephen', 'larry', 'justin', 'scott', 'brandon',
-  'benjamin', 'samuel', 'raymond', 'gregory', 'frank', 'alexander', 'patrick', 'jack', 'dennis', 'jerry',
-  'tyler', 'aaron', 'jose', 'adam', 'nathan', 'henry', 'peter', 'zachary', 'harold', 'douglas',
-  'aravind', 'rahul', 'vikram', 'arjun', 'vikash', 'suresh', 'ramesh', 'ganesh', 'mukesh', 'rakesh',
-  'amit', 'sumit', 'rohit', 'mohit', 'ankit', 'deepak', 'manish', 'ashish', 'rajesh', 'dinesh',
-  'priyank', 'kishan', 'gaurav', 'sachin', 'vinod', 'manoj', 'sanjay', 'ashok', 'raj', 'kumar',
+  'james','john','robert','michael','william','david','richard','joseph','thomas','christopher',
+  'charles','daniel','matthew','anthony','mark','donald','steven','paul','andrew','joshua',
+  'kenneth','kevin','brian','george','timothy','ronald','edward','jason','jeffrey','ryan',
+  'jacob','gary','nicholas','eric','jonathan','stephen','larry','justin','scott','brandon',
+  'benjamin','samuel','raymond','gregory','frank','alexander','patrick','jack','dennis','jerry',
+  'tyler','aaron','jose','adam','nathan','henry','peter','zachary','harold','douglas',
+  'aravind','rahul','vikram','arjun','vikash','suresh','ramesh','ganesh','mukesh','rakesh',
+  'amit','sumit','rohit','mohit','ankit','deepak','manish','ashish','rajesh','dinesh',
+  'priyank','kishan','gaurav','sachin','vinod','manoj','sanjay','ashok','raj','kumar',
 ];
 
 const femaleNames = [
-  'mary', 'patricia', 'jennifer', 'linda', 'barbara', 'elizabeth', 'susan', 'jessica', 'sarah', 'karen',
-  'lisa', 'nancy', 'betty', 'margaret', 'sandra', 'ashley', 'dorothy', 'kimberly', 'emily', 'donna',
-  'michelle', 'carol', 'amanda', 'melissa', 'deborah', 'stephanie', 'rebecca', 'sharon', 'laura', 'cynthia',
-  'kathleen', 'amy', 'angela', 'shirley', 'anna', 'brenda', 'pamela', 'emma', 'nicole', 'helen',
-  'samantha', 'katherine', 'christine', 'debra', 'rachel', 'carolyn', 'janet', 'catherine', 'maria', 'heather',
-  'diane', 'ruth', 'julie', 'olivia', 'joyce', 'virginia', 'victoria', 'kelly', 'lauren', 'christina',
-  'priya', 'pooja', 'neha', 'anjali', 'sunita', 'sita', 'rita', 'gita', 'sita', 'nita',
-  'meena', 'rekha', 'sushma', 'sudha', 'geeta', 'Veena', 'divya', 'sapna', 'pallavi', 'deepa',
+  'mary','patricia','jennifer','linda','barbara','elizabeth','susan','jessica','sarah','karen',
+  'lisa','nancy','betty','margaret','sandra','ashley','dorothy','kimberly','emily','donna',
+  'michelle','carol','amanda','melissa','deborah','stephanie','rebecca','sharon','laura','cynthia',
+  'kathleen','amy','angela','shirley','anna','brenda','pamela','emma','nicole','helen',
+  'samantha','katherine','christine','debra','rachel','carolyn','janet','catherine','maria','heather',
+  'diane','ruth','julie','olivia','joyce','virginia','victoria','kelly','lauren','christina',
+  'priya','pooja','neha','anjali','sunita','sita','rita','gita','nita','meena',
+  'rekha','sushma','sudha','geeta','veena','divya','sapna','pallavi','deepa',
 ];
 
 const detectGender = (name) => {
   const firstName = name.split(' ')[0].toLowerCase();
-  
   if (maleNames.includes(firstName)) return 'male';
   if (femaleNames.includes(firstName)) return 'female';
-  
-  // Heuristic based on name ending
-  if (firstName.endsWith('a') || firstName.endsWith('i') || firstName.endsWith('eeta') || 
+  if (firstName.endsWith('a') || firstName.endsWith('i') || firstName.endsWith('eeta') ||
       firstName.endsWith('ita') || firstName.endsWith('ini') || firstName.endsWith('ya')) {
     return 'female';
   }
-  
   return 'male';
 };
 
-// Pravatar.cc image IDs mapped by gender
-const maleImages = [3, 5, 7, 8, 11, 12, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
-const femaleImages = [1, 2, 4, 6, 9, 10, 13, 21, 31, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70];
+const maleImages = [3,5,7,8,11,12,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60];
+const femaleImages = [1,2,4,6,9,10,13,21,31,61,62,63,64,65,66,67,68,69,70];
 
 const getAvatarUrl = (name, size = 200) => {
   const h = hashString(name);
@@ -76,7 +71,6 @@ const getAvatarUrl = (name, size = 200) => {
 
 const FallbackAvatar = ({ name, size, colors }) => {
   const initials = name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2);
-
   return (
     <svg width={size} height={size} viewBox="0 0 100 100">
       <defs>
@@ -93,29 +87,30 @@ const FallbackAvatar = ({ name, size, colors }) => {
   );
 };
 
-export const Avatar = ({ user, size = 80, showStatus = false, className = '' }) => {
+export const Avatar = ({ user, size = 80, containerSize, showStatus = false, className = '' }) => {
   const name = user?.full_name || user?.name || 'User';
   const role = user?.role || 'freelancer';
   const isOnline = user?.is_online;
   const [imgError, setImgError] = useState(false);
+  const resolvedSize = containerSize || size;
 
   const colors = useMemo(() => {
     const h = hashString(name);
     return avatarColors[h % avatarColors.length];
   }, [name]);
 
-  const avatarUrl = useMemo(() => getAvatarUrl(name, size * 3), [name, size]);
+  const avatarUrl = useMemo(() => getAvatarUrl(name, resolvedSize * 3), [name, resolvedSize]);
   const gender = useMemo(() => detectGender(name), [name]);
 
   return (
     <motion.div
-      className={`relative inline-flex items-center justify-center rounded-full overflow-hidden ${className}`}
-      style={{ width: size, height: size }}
+      className={`relative inline-flex items-center justify-center rounded-full overflow-hidden flex-shrink-0 ${className}`}
+      style={{ width: resolvedSize, height: resolvedSize }}
       whileHover={{ scale: 1.05 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       {imgError ? (
-        <FallbackAvatar name={name} size={size} colors={colors} />
+        <FallbackAvatar name={name} size={resolvedSize} colors={colors} />
       ) : (
         <img
           src={avatarUrl}

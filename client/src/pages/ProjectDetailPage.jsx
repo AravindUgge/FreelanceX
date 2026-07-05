@@ -44,16 +44,19 @@ const ProjectDetailPage = () => {
           Back to Projects
         </Link>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Header */}
-            <div className="glass-card rounded-2xl p-6">
-              <div className="flex items-start justify-between mb-4">
-                <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary-400/20 text-primary-400">{project.category}</span>
-                <span className="px-3 py-1 text-xs font-medium rounded-full bg-green-500/20 text-green-400 capitalize">{project.status}</span>
-              </div>
-              <h1 className="text-2xl font-bold text-white mb-4">{project.title}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Main Content */}
+        <div className="md:col-span-2 space-y-6">
+        {/* Header */}
+        <div className="glass-card rounded-2xl p-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary-400/20 text-primary-400">{project.category}</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full bg-green-500/20 text-green-400 capitalize hidden sm:inline">{project.status}</span>
+            </div>
+            <span className="px-3 py-1 text-xs font-medium rounded-full bg-green-500/20 text-green-400 capitalize sm:hidden self-start">{project.status}</span>
+          </div>
+          <h1 className="text-xl md:text-2xl font-bold text-white mb-4">{project.title}</h1>
               <div className="flex flex-wrap gap-4 text-sm text-gray-400">
                 <span className="flex items-center gap-1"><Calendar className="w-4 h-4" />Posted {project.posted}</span>
                 <span className="flex items-center gap-1"><Users className="w-4 h-4" />{project.proposals} proposals</span>
@@ -61,9 +64,9 @@ const ProjectDetailPage = () => {
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-1 p-1 bg-dark-200 rounded-xl">
-              {['overview', 'proposals', 'updates'].map((tab) => (
-                <button key={tab} onClick={() => setActiveTab(tab)} className={`relative flex-1 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors capitalize ${activeTab === tab ? 'text-white' : 'text-gray-400 hover:text-white'}`}>
+        <div className="flex gap-1 p-1 bg-dark-200 rounded-xl overflow-x-auto">
+          {['overview', 'proposals', 'updates'].map((tab) => (
+            <button key={tab} onClick={() => setActiveTab(tab)} className={`relative px-3 md:px-4 py-2.5 text-xs md:text-sm font-medium rounded-lg transition-colors capitalize whitespace-nowrap ${activeTab === tab ? 'text-white' : 'text-gray-400 hover:text-white'}`}>
                   {activeTab === tab && <motion.div layoutId="activeTab" className="absolute inset-0 bg-primary-400/20 rounded-lg" />}
                   <span className="relative z-10">{tab}</span>
                 </button>

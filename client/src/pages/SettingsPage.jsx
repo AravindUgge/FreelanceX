@@ -60,16 +60,16 @@ const SettingsPage = () => {
                 <div className="space-y-6">
                   <h2 className="text-xl font-semibold text-white">Profile Settings</h2>
                   
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-gray-400 mb-2">First Name</label>
-                      <input type="text" defaultValue={user?.full_name?.split(' ')[0]} className="input-field" />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-gray-400 mb-2">Last Name</label>
-                      <input type="text" defaultValue={user?.full_name?.split(' ')[1]} className="input-field" />
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm text-gray-400 mb-2">First Name</label>
+          <input type="text" defaultValue={user?.full_name?.split(' ')[0]} className="input-field" />
+        </div>
+        <div>
+          <label className="block text-sm text-gray-400 mb-2">Last Name</label>
+          <input type="text" defaultValue={user?.full_name?.split(' ')[1]} className="input-field" />
+        </div>
+      </div>
 
                   <div>
                     <label className="block text-sm text-gray-400 mb-2">Email</label>
@@ -81,7 +81,7 @@ const SettingsPage = () => {
                     <textarea rows={4} className="input-field resize-none" defaultValue="Full-stack developer passionate about building amazing products." />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm text-gray-400 mb-2">Location</label>
                       <input type="text" placeholder="San Francisco, CA" className="input-field" />

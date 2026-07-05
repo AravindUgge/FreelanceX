@@ -52,8 +52,8 @@ const ProfilePage = () => {
         className="relative -mt-24 mb-8"
       >
         <div className="flex flex-col md:flex-row items-start md:items-end gap-6">
-          <div className="relative">
-            <Avatar user={user} size={150} className="ring-4 ring-dark-400" />
+      <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 shrink-0">
+        <Avatar user={user} size={80} showStatus className="w-full h-full" />
             <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-dark-400" />
           </div>
           <div className="flex-1">

@@ -69,7 +69,7 @@ const MessagesPage = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-4 px-4 sm:px-6 lg:px-8 w-full max-w-full">
-      <div className="h-[calc(100vh-6rem)] glass-card rounded-2xl overflow-hidden flex max-w-7xl mx-auto">
+      <div className="h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] glass-card rounded-2xl overflow-hidden flex max-w-7xl mx-auto">
         {/* Conversations List */}
         <div className={`${isMobileShowChat ? 'hidden md:flex' : 'flex'} flex-col w-full md:w-80 lg:w-96 border-r border-white/5`}>
           <div className="p-4 border-b border-white/5">

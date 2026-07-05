@@ -233,7 +233,7 @@ const RegisterPage = () => {
                 <p className="text-gray-400 mb-6">Choose how you want to use FreelanceX</p>
 
                 <form onSubmit={form3.handleSubmit(handleStep3)} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <label className="cursor-pointer">
                       <input {...form3.register('role')} type="radio" value="freelancer" className="peer hidden" />
                       <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="p-5 rounded-xl border-2 border-white/10 peer-checked:border-primary-400 peer-checked:bg-primary-400/10 transition-all text-center">
